@@ -1,0 +1,20 @@
+{% load i18n %}
+
+{% if form_id %}
+<form id="{{form_id}}" method="post" novalidate>
+{% else %}
+<form id="authentication-form" method="post" novalidate>
+{% endif %}
+    {% csrf_token %}
+    {% include "alexecx_django/signin_base.html" with form=form %}
+    
+    <button type="submit" class="btn btn-dark">
+		{% if btn_text %}
+			{% trans btn_text|capfirst %}
+		{% else %}
+			{% trans "submit"|capfirst %}
+		{% endif %}
+		
+		</button>
+</form>
+

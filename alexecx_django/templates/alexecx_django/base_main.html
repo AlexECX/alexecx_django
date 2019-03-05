@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+	{% load static %}
+	{% load i18n %}
+
+	<title>{% block Title %}{% endblock Title %}-&nbsp;Mon Site</title>
+
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<!-- Latest fontawesome font -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	{% comment %} 	
+	<link rel="stylesheet" href="{% static "alexecx_django/assets/bootstrap/css/bootstrap.min.css" %}">  
+	{% endcomment %}
+
+	<link rel="stylesheet" href="{% static "alexecx_django/css/base.css" %}">
+	
+  {% block newlinks %}
+	{% endblock newlinks %}
+</head>
+
+<body>
+	{% block navbar %}
+	{% endblock navbar %}
+
+	<div class="content">
+		{% block content %}
+		{% endblock content %}
+	</div>
+
+    <div class="spacer"></div>
+	{% block footer %}
+	{% endblock %}
+
+	{% block newscripts %}
+	{% endblock newscripts %}
+</body>
+
+</html>

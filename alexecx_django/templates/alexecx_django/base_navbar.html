@@ -1,0 +1,66 @@
+{% load i18n %}
+{% load alex_tags %}
+<div>
+	<div class="container-fluid" style="padding:16px;">
+		<div class="row justify-content-center align-items-center mx-auto" id="header">
+			<div class="col" id="header-site_name">
+				<div id="company-name">
+                <a href="{% url 'index' %}">
+                {% block site_name %}
+                {% endblock site_name %}
+                </a>
+                </div>
+			</div>
+			<div class="col-auto d-flex" id="header-search">
+				<div class="ml-auto">
+                    {% block site_search %}
+                    {% endblock site_search %}
+				    {% comment %} {% include "alexecx_django/site_search.html" %} {% endcomment %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<nav class="navbar navbar-light navbar-expand-sm sticky-top navigation-clean-search" id="navbar-main">
+	  <div class="container-fluid"><button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">{% trans 'basculer la navigation'|capfirst %}</span><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse mx-auto" id="navcol-1">
+					<ul class="nav navbar-nav float-sm-right float-md-right mr-auto" id="navbar-navitem-1">
+							<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home"></i>&nbsp; {% trans 'accueil' %}</a></li>
+							<li class="nav-item" role="presentation"><a class="nav-link" href="#">{% trans "navtest" %}</a></li>
+							<li class="nav-item" role="presentation">
+								<form action="{% url 'set_language' %}" method="post" name="langform">
+                                    {% csrf_token %}
+									<input name="next" type="hidden" value="{{ request.path}}{% if request.GET %}?{% url_encode request.GET %}{% endif %}" />
+									<select class="form-control" name="language" onchange="this.form.submit()">
+										{% get_current_language as LANGUAGE_CODE %}
+										{% get_available_languages as LANGUAGES %}
+										{% get_language_info_list for LANGUAGES as languages %}
+										{% for language in languages %}
+											<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+												{{ language.name_local|capfirst }} ({{ language.code }})
+											</option>
+										{% endfor %}
+									</select>
+								</form>
+							</li>
+							
+					</ul>
+					
+				{% comment %}
+				  This navbar-nav is hidden on bigger devices (expanded navbar) and appears on mobile.
+				  id="navbar-navitem-0" appears for mobile, replaced by id="navbar-navitem-2" on others.
+				{% endcomment %}
+				<ul class="nav navbar-nav float-sm-right float-md-right" id="navbar-navitem-0">
+					{% block expanded %}
+					{% endblock expanded %}
+				</ul>
+
+				<ul class="nav navbar-nav float-sm-right float-md-right" id="navbar-navitem-2">
+					{% block collapsed %}
+					{% endblock collapsed %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>

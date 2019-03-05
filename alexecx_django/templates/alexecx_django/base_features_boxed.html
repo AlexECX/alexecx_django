@@ -1,0 +1,38 @@
+{% extends "alexecx_django/base.html" %}
+{% load static %}
+
+{% block Title %}
+{% endblock Title %}
+
+{% block baselinks %}
+    <link rel="stylesheet" href="{% static "alexecx_django/css/feature-boxed.css" %}">
+{% block features_boxedlinks %}
+{% endblock features_boxedlinks %}
+{% endblock baselinks %}
+
+{% block content %}
+
+	<div class="features-boxed">
+		<div class="container" style="max-width:960px">
+			<div id="django_messages">
+                {% if messages %}
+                {% include "alexecx_django/django_messages.html" with messages=messages%}
+                {% endif %} 
+            </div>
+
+			<div class="intro">
+				{% block box_intro %}
+				{% endblock box_intro %}
+			</div>
+
+			{% block box_content %}
+			{% endblock box_content %}
+
+		</div>
+	</div>
+    
+{% endblock %}
+
+{% block newscripts %}
+{% endblock newscripts %}
+

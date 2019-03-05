@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-01 23:52-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\alexecx_django\forms.py:65
+msgid "Choix checkbox invalide."
+msgstr "Choix checkbox invalide."
+
+#: .\alexecx_django\forms.py:66
+msgid "Sélectionnez au moins 1 item."
+msgstr "Sélectionnez au moins 1 item."
+
+#: .\alexecx_django\forms.py:76
+msgid "Vous devez choisir au moins 1 item"
+msgstr "Vous devez choisir au moins 1 item"
+
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:27
+msgid "basculer la navigation"
+msgstr "basculer la navigation"
+
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:30
+msgid "accueil"
+msgstr "accueil"
+
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:31
+msgid "navtest"
+msgstr "navtest"
+
+#: .\alexecx_django\templates\alexecx_django\changelist_form.html:76
+msgid "titre"
+msgstr "titre"
+
+#: .\alexecx_django\templates\alexecx_django\changelist_form.html:80
+msgid "disponibilité"
+msgstr "disponibilité"
+
+#: .\alexecx_django\templates\alexecx_django\page_number_bar.html:6
+msgid "début"
+msgstr "début"
+
+#: .\alexecx_django\templates\alexecx_django\page_number_bar.html:22
+msgid "fin"
+msgstr "fin"
+
+#: .\alexecx_django\templates\alexecx_django\signin_form.html:15
+msgid "submit"
+msgstr "envoyer"
+
+#: .\alexecx_django\templates\alexecx_django\signin_page.html:6
+msgid "se connecter"
+msgstr "se connecter"
+
+#: .\alexecx_django\templates\alexecx_django\signup_page.html:7
+#: .\alexecx_django\templates\alexecx_django\signup_page.html:12
+msgid "créer un compte"
+msgstr "créer un compte"
+
+#: .\alexecx_django\templates\alexecx_django\site_search.html:6
+msgid "recherche"
+msgstr "recherche"
+
+#: .\virtual_library\settings.py:103
+msgid "french"
+msgstr "français"
+
+#: .\virtual_library\settings.py:104
+msgid "english"
+msgstr "anglais"

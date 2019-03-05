@@ -1,0 +1,5 @@
+<div style="text-align: center;">
+	{% for message in messages %}
+		<div class="alert {{ message.tags }}" role="alert" style="max-width: 520px; display: inline-block; text-align: left;">{{message}}</div>
+	{% endfor %}
+</div>

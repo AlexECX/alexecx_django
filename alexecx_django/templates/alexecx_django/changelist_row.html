@@ -1,0 +1,7 @@
+{% load widget_tweaks %}
+<tr id="{% if form.prefix %}{{form.prefix}}-{% endif %}row_{{object.id}}" class="row1">
+    <td class="action-checkbox"><span>
+    <input type="checkbox" id="id_{% if form.prefix %}{{form.prefix}}-{% endif %}{{form.selection.name}}_{{object.id}}" name="{% if form.prefix %}{{form.prefix}}-{% endif %}{{form.selection.name}}" value="{{ object.id }}">
+    </span></td>
+    <td class="field-title"><a href="{{object.get_absolute_url}}">{{ object }}</a></td>
+</tr>

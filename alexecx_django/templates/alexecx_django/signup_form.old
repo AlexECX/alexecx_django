@@ -1,0 +1,62 @@
+{% extends "alexecx_django/base_features_boxed.html" %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block Title %}
+	{% trans "Créer un compte" %}
+{% endblock Title %}
+
+
+{% block box_intro %}
+	<h2 class="text-center">{% trans "Créer un compte" %}</h2>
+{% endblock box_intro %}
+			
+{% block box_content %}
+	<div class="mx-auto" style="max-width: 540px;">
+
+		<form method="post" novalidate>
+			{% csrf_token %}
+			
+			{% for hidden_field in form.hidden_fields %}
+				{{ hidden_field }}
+			{% endfor %}
+			
+			{% if form.non_field_errors %}
+				<div class="alert alert-danger" role="alert">
+				{% for error in form.non_field_errors %}
+					{{ error }}
+				{% endfor %}
+				</div>
+			{% endif %}
+			
+			{% for field in form.visible_fields %}
+				<div class="form-group">
+				{{ field.label_tag }}
+			
+				{% if form.is_bound %}
+					{% if field.errors %}
+					{% render_field field class="form-control is-invalid" %}
+					{% for error in field.errors %}
+						<div class="invalid-feedback">
+						{{ error }}
+						</div>
+					{% endfor %}
+					{% else %}
+					{% render_field field class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field field class="form-control" %}
+				{% endif %}
+			
+				{% if field.help_text %}
+					<small class="form-text text-muted">{{ field.help_text|safe }}</small>
+				{% endif %}
+				</div>
+			{% endfor %}
+			
+			<button type="submit" class="btn btn-dark">{% trans "Créer" %}</button>
+		</form>
+
+	</div>
+  
+{% endblock box_content %}

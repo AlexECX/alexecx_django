@@ -1,0 +1,29 @@
+{% extends 'alexecx_django/base_main.html' %}
+{% load static %}
+
+{% block Title %}
+{% endblock Title %}
+
+{% block newlinks %}
+    <link rel="stylesheet" href="{% static "alexecx_django/css/navbar.css" %}">
+    <link rel="stylesheet" href="{% static "alexecx_django/css/footer.css" %}">
+{% block baselinks %}
+{% endblock baselinks %}
+{% endblock newlinks %}
+
+    
+
+{% block navbar %}
+	{% include "alexecx_django/base_navbar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+{% include "alexecx_django/base_footer.html" %}
+{% endblock %}
+
+{% block newscripts %}
+{% endblock newscripts %}
+

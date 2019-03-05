@@ -1,0 +1,7 @@
+{% load i18n %}
+
+<form class="d-inline-flex" action="{% url 'site_search' %}" method="GET" style="padding:8px 18px;">
+	
+	<button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+	<input class="form-control" type="search" name="search" required placeholder="{% trans 'recherche'|capfirst %}" minlength="1" style="margin-right:0px;margin-left:0px;">
+</form>

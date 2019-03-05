@@ -1,0 +1,104 @@
+{% load i18n %}		
+{% load widget_tweaks %}
+<div class="form-group">
+
+	<form method="post" id="{% if form.prefix %}{{form.prefix}}-{% endif %}form" class="changelist-form" action="{{ the_url }}">
+		{% csrf_token %}
+		{% for hidden_field in form.hidden_fields %}
+			{{ hidden_field }}
+		{% endfor %}
+
+		{% spaceless %}
+        <div id="{% if form.prefix %}{{form.prefix}}-{% endif %}non_field_errors" style="color: #dc3545;">
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% endspaceless %}
+		
+
+		<div class="actions form-group">
+				<label>Action:</label>
+				{% if form.is_bound %}
+					{% if form.action.errors %}
+						{% render_field form.action class="custom-select form-control is-invalid" %}
+					{% else %}
+						{% render_field form.action class="custom-select form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.action class="custom-select form-control" %}
+				{% endif %}
+				<button class="btn btn-dark" type="submit" name="next" value="{{ request.path }}">Go</button>
+				
+                {% spaceless %}
+				<div id="action-errors" class="invalid-feedback"> 
+                {% if form.action.errors %}
+					{% for error in form.action.errors %}
+					{{ error }}
+					{% endfor %}
+                {% endif %}
+				</div>
+				{% endspaceless %}
+		</div>
+			
+		<div id="id_{% if form.prefix %}{{form.prefix}}-{% endif %}{{form.selection.name}}" class="results form-group">				
+            {% spaceless %}
+            <div id="{% if form.prefix %}{{form.prefix}}-{% endif %}non_field_errors" style="color: #dc3545;">
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% endspaceless %}
+                            
+            {% spaceless %}
+            <div id="selection-errors" style="color: #dc3545;">
+            {% if form.selection.errors %}
+                {% for error in form.selection.errors %}
+                {{ error }}
+                {% endfor %}
+            {% endif %}
+            </div>
+            
+            {% endspaceless %}
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="action-checkbox-column" scope="col">
+                            <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>&nbsp;
+                            <div class="clear"></div>
+                        </th>
+                        <th class="sortable column-title" scope="col">
+                            <div class="text"><a href="?o=1">{% trans "titre"|capfirst %}</a></div>&nbsp;
+                            <div class="clear"></div>
+                        </th>
+                        <th class="sortable column-pub_date" scope="col">
+                            <div class="text"><a href="?o=2">{% trans "disponibilité"|capfirst %}</a></div>&nbsp;
+                            <div class="clear"></div>
+                        </th>
+                        {% comment %} <th class="sortable column-availability" scope="col">
+                            <div class="text"><a href="?o=3">Availability</a></div>&nbsp;
+                            <div class="clear"></div>
+                        </th> {% endcomment %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for object in object_list %}
+												{% block changelist_row %}
+                        {% include "alexecx_django/changelist_row.html" with object=object %}
+												{% endblock changelist_row %}
+										{% endfor %} 
+                    
+                </tbody>
+            </table>
+    
+		</div>
+
+	</form>
+</div>
+

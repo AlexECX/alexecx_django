@@ -1,0 +1,20 @@
+{% extends "alexecx_django/base_features_boxed.html" %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% spaceless %}
+{% block Title %}
+	{% trans "créer un compte"|capfirst %}
+{% endblock Title %}
+
+
+{% block box_intro %}
+	<h2 class="text-center">{% trans "créer un compte"|capfirst %}</h2>
+{% endblock box_intro %}
+			
+{% block box_content %}
+<div class="mx-auto" style="max-width: 540px;">
+    {% include 'alexecx_django/signin_form.html' with form=form form_id="signup-form" btn_text="créer" %}
+</div>
+{% endblock box_content %}
+{% endspaceless %}

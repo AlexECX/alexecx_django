@@ -1,0 +1,14 @@
+{% extends "alexecx_django/base_features_boxed.html" %}
+{% load i18n %}
+
+
+{% block Title %}
+	{% trans "se connecter"|capfirst %}
+{% endblock Title %}
+
+{% block box_content %}
+<div class="mx-auto" style="max-width: 540px;";>
+    {% include 'alexecx_django/signin_form.html' with form=form form_id="authentication-form" btn_text="se connecter" %}
+</div>
+{% endblock %}
+
