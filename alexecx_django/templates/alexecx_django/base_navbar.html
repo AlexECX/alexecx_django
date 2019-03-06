@@ -53,11 +53,39 @@
 				{% endcomment %}
 				<ul class="nav navbar-nav float-sm-right float-md-right" id="navbar-navitem-0">
 					{% block expanded %}
+					{% if not user.is_authenticated %}
+						<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'signin' %}"><i class="fa fa-sign-in"></i>&nbsp;{% trans 'se connecter'|capfirst %}</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'signup' %}"><i class="fa fa-user"></i>&nbsp;{% trans 'créer un compte'|capfirst %}</a></li>
+					{% else %}
+						<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'userprofile' %}"><i class="fa fa-user"></i>&nbsp;{% trans 'profil'|capfirst %}</a></li>
+						{% if user.is_superuser %}
+							<div class="dropdown-divider" role="presentation"></div>
+							<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'admin:index' %}"><i class="fa fa-gears"></i>&nbsp;{% trans 'site admin'|capfirst %}</a></li>
+						{% endif %}
+						<div class="dropdown-divider" role="presentation"></div>
+						<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logout' %}" id="navbar-dropdown-logout"><i class="fa fa-sign-out"></i>{% trans 'se déconnecter'|capfirst %}</a></li>
+					{% endif %}
 					{% endblock expanded %}
 				</ul>
 
 				<ul class="nav navbar-nav float-sm-right float-md-right" id="navbar-navitem-2">
 					{% block collapsed %}
+					{% if not user.is_authenticated %}
+						<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'signin' %}"><i class="fa fa-sign-in"></i>&nbsp;{% trans 'se connecter'|capfirst %}</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'signup' %}"><i class="fa fa-user"></i>&nbsp;{% trans 'créer un compte'|capfirst %}</a></li>
+					{% else %}
+						<li class="dropdown" id="navbar-dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">{{ request.user.username }}&nbsp;</a>
+							<div class="dropdown-menu mr-auto dropdown-menu-right" role="menu">
+								<a class="dropdown-item" role="presentation" href="{% url 'userprofile' %}"><i class="fa fa-user"></i>&nbsp;{% trans 'profil'|capfirst %}</a>
+								{% if user.is_superuser %}
+								<div class="dropdown-divider" role="presentation"></div>
+								<a class="dropdown-item" role="presentation" href="{% url 'admin:index' %}"><i class="fa fa-gears"></i>&nbsp;{% trans 'site admin'|capfirst %}</a>
+								{% endif %}
+								<div class="dropdown-divider" role="presentation"></div>
+								<a class="dropdown-item" role="presentation" href="{% url 'logout' %}" id="navbar-dropdown-logout"><i class="fa fa-sign-out"></i>{% trans 'se déconnecter'|capfirst %}</a>
+							</div>							
+						</li>
+					{% endif %}
 					{% endblock collapsed %}
 				</ul>
 			</div>

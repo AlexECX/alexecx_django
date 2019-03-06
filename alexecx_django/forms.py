@@ -1,45 +1,47 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
-from django.utils.translation import ugettext_lazy as _u
+#from django.utils.translation import ugettext_lazy as _u
 
 from django.contrib.auth import get_user_model
 
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(
-        label=_u('Prénom'), 
-        max_length=30, 
-        required=True,
-        )
-    last_name = forms.CharField(
-        label=_u('Nom'), 
-        max_length=30, 
-        required=True, 
-        )
-    email = forms.EmailField(
-        label=_u('Email'), 
-        max_length=254, 
-        help_text=_u(
-            'Utiliser une adresse email valide (something@exemple.com).'
-            )
-        )
-    address = forms.CharField(
-        label=_u('Adresse'),
-        max_length=200, 
-        required=False,
-        )
-    phone = forms.CharField(
-        label=_u('Téléphone'), 
-        max_length=10, 
-        required=False, 
-        )
+    # first_name = forms.CharField(
+    #     label=_u('Prénom'), 
+    #     max_length=30, 
+    #     required=True,
+    #     )
+    # last_name = forms.CharField(
+    #     label=_u('Nom'), 
+    #     max_length=30, 
+    #     required=True, 
+    #     )
+    # email = forms.EmailField(
+    #     label=_u('Email'), 
+    #     max_length=254, 
+    #     help_text=_u(
+    #         'Utiliser une adresse email valide (something@exemple.com).'
+    #         )
+    #     )
+    # address = forms.CharField(
+    #     label=_u('Adresse'),
+    #     max_length=200, 
+    #     required=False,
+    #     )
+    # phone = forms.CharField(
+    #     label=_u('Téléphone'), 
+    #     max_length=10, 
+    #     required=False, 
+    #     )
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'first_name', 'last_name', 'email', 
-                  'password1', 'password2', 
-                  'address', 'phone', )
+        exclude = ('password', 'is_superuser', 'is_staff', 'groups', 
+        'user_permissions', 'last_login', 'is_active', 'date_joined')
+        # fields = ('username', 'first_name', 'last_name', 'email', 
+        #           'password1', 'password2', 
+        #           'address', 'phone', )
 
     def __init__(self, request=None, **kwargs):
         super().__init__(**kwargs)

@@ -14,7 +14,7 @@ class SignupView(LoginView):
     Sinon, lui renvoie la page d'inscription.
     """
     form_class = SignUpForm
-    template_name = 'alexecx_django/signup_form.html'
+    template_name = 'alexecx_django/signup_page.html'
     success_url = reverse_lazy('alexecx_django:index')
 
     def form_valid(self, form):

@@ -74,11 +74,3 @@ msgstr "sign up"
 #: .\alexecx_django\templates\alexecx_django\site_search.html:6
 msgid "recherche"
 msgstr "search"
-
-#: .\virtual_library\settings.py:103
-msgid "french"
-msgstr "french"
-
-#: .\virtual_library\settings.py:104
-msgid "english"
-msgstr "english"
