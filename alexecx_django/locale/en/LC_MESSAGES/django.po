@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-01 23:52-0500\n"
+"POT-Creation-Date: 2019-03-05 22:22-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\alexecx_django\forms.py:65
+#: .\alexecx_django\forms.py:67
 msgid "Choix checkbox invalide."
 msgstr "Invalid checkbox choice"
 
-#: .\alexecx_django\forms.py:66
+#: .\alexecx_django\forms.py:68
 msgid "Sélectionnez au moins 1 item."
 msgstr "Select at least 1 item"
 
-#: .\alexecx_django\forms.py:76
+#: .\alexecx_django\forms.py:78
 msgid "Vous devez choisir au moins 1 item"
 msgstr "You must select at least 1 item"
 
@@ -41,6 +41,34 @@ msgstr "home"
 #: .\alexecx_django\templates\alexecx_django\base_navbar.html:31
 msgid "navtest"
 msgstr ""
+
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:59
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:76
+#: .\alexecx_django\templates\alexecx_django\signin_page.html:6
+msgid "se connecter"
+msgstr "sign in"
+
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:60
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:77
+#: .\alexecx_django\templates\alexecx_django\signup_page.html:7
+#: .\alexecx_django\templates\alexecx_django\signup_page.html:12
+msgid "créer un compte"
+msgstr "sign up"
+
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:62
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:81
+msgid "profil"
+msgstr "profile"
+
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:65
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:84
+msgid "site admin"
+msgstr "admin site"
+
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:68
+#: .\alexecx_django\templates\alexecx_django\base_navbar.html:87
+msgid "se déconnecter"
+msgstr "sign out"
 
 #: .\alexecx_django\templates\alexecx_django\changelist_form.html:76
 msgid "titre"
@@ -62,15 +90,14 @@ msgstr "end"
 msgid "submit"
 msgstr "submit"
 
-#: .\alexecx_django\templates\alexecx_django\signin_page.html:6
-msgid "se connecter"
-msgstr "sign in"
-
-#: .\alexecx_django\templates\alexecx_django\signup_page.html:7
-#: .\alexecx_django\templates\alexecx_django\signup_page.html:12
-msgid "créer un compte"
-msgstr "sign up"
-
 #: .\alexecx_django\templates\alexecx_django\site_search.html:6
 msgid "recherche"
 msgstr "search"
+
+#: .\app_settings\settings.py:64
+msgid "french"
+msgstr ""
+
+#: .\app_settings\settings.py:65
+msgid "english"
+msgstr ""

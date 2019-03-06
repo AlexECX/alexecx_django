@@ -26,7 +26,7 @@
 	  <div class="container-fluid"><button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">{% trans 'basculer la navigation'|capfirst %}</span><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse mx-auto" id="navcol-1">
 					<ul class="nav navbar-nav float-sm-right float-md-right mr-auto" id="navbar-navitem-1">
-							<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home"></i>&nbsp; {% trans 'accueil' %}</a></li>
+							<li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home"></i>&nbsp; {% trans 'accueil'|capfirst %}</a></li>
 							<li class="nav-item" role="presentation"><a class="nav-link" href="#">{% trans "navtest" %}</a></li>
 							<li class="nav-item" role="presentation">
 								<form action="{% url 'set_language' %}" method="post" name="langform">
