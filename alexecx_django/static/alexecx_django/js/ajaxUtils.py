@@ -15,6 +15,11 @@ if (!Object.entries) {
     };
 }""")
 
+__pragma__('js', '{}', """//IE polyfill""")
+if typeof(HTMLCollection.prototype[Symbol.iterator]) is "undefined":
+    HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator]
+    HTMLFormControlsCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator]
+
 DEFAULT_MESSAGES_ID = 'django_messages'
 
 def handleMessages(data, messages_id=DEFAULT_MESSAGES_ID):
@@ -32,6 +37,8 @@ def ajax(param):
     else:
         xhr = __new__(ActiveXObject("Microsoft.XMLHTTP"))()
     
+    xhr.open(param.type, param.url)
+
     if param.contentType:
        content_type = param.contentType
     else:
@@ -64,7 +71,6 @@ def ajax(param):
     if param.beforeSend:
         param.beforeSend(xhr, param)
 
-    xhr.open(param.type, param.url)
     if param.data:
         xhr.send(param.data)
     else:
@@ -72,11 +78,11 @@ def ajax(param):
 
 def serialize(obj):
     s = []
-    for key in obj:
-        s.append(encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]))
+    for key,value in Object.entries(obj):
+        s.append(encodeURIComponent(key) + "=" + encodeURIComponent(value))
     return ("&".join(s)).replace('/%20/', '+')
 
-def formJS():
+def formJS(form):
     form_data = {} #__: jsiter
     if typeof(form) == 'object' and form.nodeName.toLowerCase() == 'form':
         for field in form.elements:

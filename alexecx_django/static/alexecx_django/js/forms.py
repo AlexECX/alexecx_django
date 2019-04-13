@@ -83,7 +83,7 @@ __pragma__('js', '{}', """/**
 *  
 *  
 */""")
-class AjaxForm:
+class AjaxForm(BaseAjaxForm):
     
     def __init__(self, form):
         super().__init__(form)
