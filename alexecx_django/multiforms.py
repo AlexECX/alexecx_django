@@ -94,7 +94,7 @@ class AbstractFormsMixin(ABC, ContextMixin):
 
     def get_prefix(self, form_name):
         """Return the prefix to use for forms."""
-        return self.prefixes.get(form_name, "<%s>" % form_name)
+        return self.prefixes.get(form_name, "%s" % form_name)
     
     def get_form_classes(self):
         """

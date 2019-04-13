@@ -2,6 +2,18 @@
 from JS import JSON, XMLHttpRequest, decodeURIComponent, document, encodeURIComponent, typeof, Object, ActiveXObject #__: skip
 from transcrypt import __new__, __pragma__ #__: skip
 
+__pragma__('js', '{}', """
+if (!Object.entries) {
+    Object.entries = function( obj ){
+        var ownProps = Object.keys( obj ),
+            i = ownProps.length,
+            resArray = new Array(i);
+        while (i--)
+        resArray[i] = [ownProps[i], obj[ownProps[i]]];
+        
+        return resArray;
+    };
+}""")
 
 DEFAULT_MESSAGES_ID = 'django_messages'
 
@@ -20,11 +32,13 @@ def ajax(param):
     else:
         xhr = __new__(ActiveXObject("Microsoft.XMLHTTP"))()
     
-    xhr.open(param.type, param.url)
     if param.contentType:
        content_type = param.contentType
     else:
         content_type = "application/x-www-form-urlencoded; charset=UTF-8"
+
+    if param.dataType:
+        xhr.responseType = param.dataType
     
     xhr.setRequestHeader('Content-Type', content_type)
 
@@ -50,25 +64,36 @@ def ajax(param):
     if param.beforeSend:
         param.beforeSend(xhr, param)
 
+    xhr.open(param.type, param.url)
     if param.data:
         xhr.send(param.data)
     else:
         xhr.send()
-    
 
-def formSerialize(form):
-    field = []
+def serialize(obj):
     s = []
+    for key in obj:
+        s.append(encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]))
+    return ("&".join(s)).replace('/%20/', '+')
+
+def formJS():
+    form_data = {} #__: jsiter
     if typeof(form) == 'object' and form.nodeName.toLowerCase() == 'form':
         for field in form.elements:
             if field.name and not field.disabled and field.type not in ['file', 'reset', 'submit', 'button']:
                 if field.type == 'select-multiple':
                     for option in reversed(field.options):
                         if option.selected:
-                            s[s.length] = encodeURIComponent(field.name) + "=" + encodeURIComponent(option.value)
+                            form_data[field.name] = option.value
                 elif field.type not in ['checkbox', 'radio'] or field.checked:
-                    s[s.length] = encodeURIComponent(field.name) + "=" + encodeURIComponent(field.value)
-    return ("&".join(s)).replace('/%20/', '+')
+                    form_data[field.name] = field.value
+    return form_data
+
+def formSerialize(form):
+    return serialize(formJS(form))
+
+def formJSON(form):
+    return JSON.stringify(formJS(form))
 
 __pragma__('alias', 'name', 'py_name')
 __pragma__('alias', 'type', 'py_type')

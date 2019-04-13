@@ -4,6 +4,22 @@ from org.transcrypt import __pragma__, __new__ #__: skip
 
 
 __pragma__('js', '{}', """
+(function () {
+
+  if ( typeof window.CustomEvent === "function" ) return false;
+
+  function CustomEvent ( event, params ) {
+    params = params || { bubbles: false, cancelable: false, detail: null };
+    var evt = document.createEvent( 'CustomEvent' );
+    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    return evt;
+   }
+
+  CustomEvent.prototype = window.Event.prototype;
+
+  window.CustomEvent = CustomEvent;
+})();
+
 class AjaxFormEvent extends CustomEvent {
     constructor(event_name, data, xhr) {
         super(event_name);
@@ -11,42 +27,18 @@ class AjaxFormEvent extends CustomEvent {
         this.data = data;
     }
 }""")
-__pragma__('js', '{}', """/**
-*  
-*  
-*/""")
-class AjaxForm(object):
-    
+
+
+class BaseAjaxForm:
     def __init__(self, form):
         self.form = form
         self.form.addEventListener('submit', lambda event: self.form_submit(event))
         self.method = form.method
         self.action = form.action
         self.callbacks = {} #__: jsiter
-        self.callbacks['ajaxformsuccess'] = self.ajax_success
-        self.form.addEventListener(
-                'ajaxformsuccess', 
-                lambda event: self.callbacks['ajaxformsuccess'](event)
-                )
-        self.callbacks['ajaxformjson'] = self.on_json
-        self.form.addEventListener(
-                'ajaxformjson', 
-                lambda event: self.callbacks['ajaxformjson'](event)
-                )
-        self.callbacks['ajaxformhttp'] = self.on_http
-        self.form.addEventListener(
-                'ajaxformhttp', 
-                lambda event: self.callbacks['ajaxformhttp'](event)
-                )
-        self.callbacks['ajaxformerror'] = self.ajax_error
-        self.form.addEventListener(
-            'ajaxformerror',
-            lambda event: self.callbacks['ajaxformerror'](event)
-        )
-
+        
     def form_submit(self, event):
         event.preventDefault()
-        test = formSerialize(self.form)
         
         def success(data, status, xhr):
             self.data = data
@@ -75,7 +67,7 @@ class AjaxForm(object):
 ajax ({
     type: self.method, 
     url: self.action, 
-    data: test, 
+    data: formSerialize(self.form), 
     contentType: 'application/x-www-form-urlencoded', 
     beforeSend: (function __lambda__ (xhr, settings) {
         return csrfCompat (xhr, settings);
@@ -83,6 +75,39 @@ ajax ({
     success: success,
     error: error
 });""")
+
+    def addEventListener(self, event, callback):
+        self.form.addEventListener(event, callback)
+
+__pragma__('js', '{}', """/**
+*  
+*  
+*/""")
+class AjaxForm:
+    
+    def __init__(self, form):
+        super().__init__(form)
+
+        self.callbacks['ajaxformsuccess'] = self.ajax_success
+        self.form.addEventListener(
+            'ajaxformsuccess', 
+            lambda event: self.callbacks['ajaxformsuccess'](event)
+        )   
+        self.callbacks['ajaxformerror'] = self.ajax_error
+        self.form.addEventListener(
+            'ajaxformerror',
+            lambda event: self.callbacks['ajaxformerror'](event)
+        )
+        self.callbacks['ajaxformjson'] = self.on_json
+        self.form.addEventListener(
+            'ajaxformjson', 
+            lambda event: self.callbacks['ajaxformjson'](event)
+        )
+        self.callbacks['ajaxformhttp'] = self.on_http
+        self.form.addEventListener(
+            'ajaxformhttp', 
+            lambda event: self.callbacks['ajaxformhttp'](event)
+        )
 
     def on(self, event, callback):
         self.callbacks[event] = callback
@@ -95,9 +120,9 @@ ajax ({
         else:
             self.form.dispatchEvent(
                 __new__(AjaxFormEvent)('ajaxformhttp', event.data, event.xhr))
-        
+
     def ajax_error(self, event):
-            alert("ajax response error: "+event.data)
+        alert("ajax response error: "+event.data)
     
     def on_json(self, event):
         data = event.data

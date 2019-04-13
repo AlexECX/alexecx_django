@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
-    #'widget_tweaks',
+    # 'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -113,12 +113,12 @@ USE_L10N = True
 USE_TZ = True
 
 
-#Emplacement des traductions
+# Emplacement des traductions
 
 LOCALE_PATHS = ()
-#print(LOCALE_PATHS)
+# print(LOCALE_PATHS)
 
-#Les traductions disponibles
+# Les traductions disponibles
 LANGUAGES = ()
 
 # Static files (CSS, JavaScript, Images)
@@ -126,11 +126,12 @@ LANGUAGES = ()
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = []
+STATIC_ROOT = os.path.join(BASE_DIR_PATH, 'static/')
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR_PATH, 'media/')
 
-#paypal
+# paypal
 # PAYPAL_RECEIVER_EMAIL = 'sonalis.packtpub-test1'
 # Paypal_TEST = TRUE
 

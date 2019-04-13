@@ -11,12 +11,17 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 from django.utils.translation import ugettext_lazy as ugettext
 
 # Build paths inside the project like this: os.path.join(BASE_DIR_PATH, ...)
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR_PATH = Path(os.path.abspath(__file__)).parents[2]
+if getattr(sys, 'frozen', False):
+    BASE_DIR_PATH = Path(os.path.abspath(sys.executable)).parents[2]
+else:
+    BASE_DIR_PATH = Path(os.path.abspath(__file__)).parents[2]
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
