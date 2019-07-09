@@ -14,11 +14,9 @@
 
 	<div class="features-boxed">
 		<div class="container" style="max-width:960px">
-			<div id="django_messages">
-                {% if messages %}
-                {% include "alexecx_django/django_messages.html" with messages=messages%}
-                {% endif %} 
-            </div>
+			<div id="django_messages" style="text-align: center;{% if not messages %}display: none;{% endif %}">
+        {% include "alexecx_django/django_messages.html" with messages=messages%}
+			</div>
 
 			<div class="intro">
 				{% block box_intro %}

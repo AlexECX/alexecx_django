@@ -1,5 +1,7 @@
-<div style="text-align: center;">
+{% if messages %}
 	{% for message in messages %}
 		<div class="alert {{ message.tags }}" role="alert" style="max-width: 520px; display: inline-block; text-align: left;">{{message}}</div>
 	{% endfor %}
-</div>
+{% else %}
+	<div class="alert" role="alert" style="max-width: 520px; display: inline-block; text-align: left;"></div>
+{% endif %}
